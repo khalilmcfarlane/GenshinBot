@@ -51,8 +51,10 @@ async def check_birthday(character_list):
                     await channel.send(f'https://genshin.jmp.blue/characters/{character.name}/card')
                 except Exception as e:
                     print(e)
+                    await close_bot()
     else:
         print("Couldn't find channel.")
+        await close_bot()
 
 
 def nearest_birthday(character_list):
@@ -67,6 +69,7 @@ async def daily_message():
         await channel.send("Daily Genshin update!")
     else:
         print("Couldn't find channel.")
+        await close_bot()
 
 
 @bot.event
@@ -74,11 +77,16 @@ async def on_ready():
     print(f'{bot.user} is now running!')
 
 
+async def close_bot():
+    await bot.close()
+
+
 async def schedule_daily_message():
     await daily_message()
     characters = await get_char_data(URL)
     character_list = await create_genshin_character_list(characters)
     await check_birthday(character_list)
+    await close_bot()
 
 
 class GenshinBot(commands.Bot):
