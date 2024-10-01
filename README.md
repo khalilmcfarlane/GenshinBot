@@ -1,10 +1,10 @@
 # GenshinBot
-Discord bot for Genshin Impact news
+Discord bot for character birthdays in the game Genshin Impact. This is best paired with some sort of cron job so as to not constantly eat up your PC's resources.
 
-## Ideas
-1. Scrape Genshin twitter page for news
-2. Scrape official genshin site
-3. Use Genshin API (https://github.com/genshindev/api?tab=readme-ov-file) to store birthdays
-   1. Store character name, image, bday in object?
-   2. Back up in DB?
-   3. 
+# Setup 
+## Dependencies:
+   1. pip install requests
+   2. pip install discord.py
+### Setup
+1. Run python genshin_bot.py
+   1. Add/remove functions to fit what you want to send to channel.
