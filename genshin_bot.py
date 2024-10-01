@@ -22,10 +22,8 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 async def get_char_data(url: str):
     await bot.wait_until_ready()
     response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        raise Exception
+    response.raise_for_status()
+    return response.json()
 
 
 # return a list of GenshinCharacters (with name + birthday)
